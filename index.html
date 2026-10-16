@@ -3,61 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osama Gharibo | Portfolio</title>
+    <title>Osama Gharibo | Data Analyst Portfolio</title>
+    <!-- استدعاء مكتبة الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- خطوط جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; color: #333; margin: 0; padding: 0; line-height: 1.6; }
-        header { background: #2c3e50; color: #fff; text-align: center; padding: 3rem 1rem; }
-        header h1 { margin: 0; font-size: 2.5rem; }
-        header p { margin: 10px 0 0; font-size: 1.2rem; color: #1abc9c; }
-        .container { max-width: 1100px; margin: 2rem auto; padding: 0 20px; }
-        .skills { text-align: center; margin-bottom: 3rem; }
-        .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid #3498db; transition: transform 0.3s ease; }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { margin-top: 0; color: #2c3e50; }
-        .tag { display: inline-block; background: #e8f4f8; color: #2980b9; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; margin: 5px 2px 0 0; font-weight: bold; }
-        footer { text-align: center; padding: 2rem; color: #7f8c8d; font-size: 0.9rem; }
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e293b;
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #0f172a 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #38bdf8;
+            font-weight: 400;
+            margin: 0 0 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: #38bdf8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+        }
+
+        /* Skills */
+        .skills-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .skills-section h3 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: white;
+            color: var(--secondary-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Projects Grid */
+        .projects-header {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
+        }
+
+        /* Project Image Placeholder */
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #cbd5e1;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h4 {
+            font-size: 1.25rem;
+            margin: 0 0 10px 0;
+            color: var(--secondary-color);
+        }
+
+        .project-content p {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tools {
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-tag {
+            font-size: 0.75rem;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-right: 5px;
+            display: inline-block;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            text-align: center;
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        footer {
+            background: var(--secondary-color);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
     </style>
 </head>
 <body>
 
-    <header>
+    <!-- Hero Section -->
+    <header class="hero">
         <h1>Osama Gharibo</h1>
-        <p>Data Analyst & BI Developer</p>
+        <h2>Data Analyst & BI Developer</h2>
+        <div class="social-links">
+            <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:your-email@example.com" title="Email Me"><i class="fas fa-envelope"></i></a>
+        </div>
     </header>
 
     <div class="container">
-        <div class="skills">
-            <h2>Technical Skills</h2>
-            <span class="tag">Power BI</span>
-            <span class="tag">Python</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Looker Studio</span>
-            <span class="tag">Data Modeling</span>
+        <!-- Skills Section -->
+        <div class="skills-section">
+            <h3>Technical Expertise</h3>
+            <span class="skill-tag"><i class="fas fa-chart-bar"></i> Power BI</span>
+            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
+            <span class="skill-tag"><i class="fas fa-chart-pie"></i> Looker Studio</span>
+            <span class="skill-tag"><i class="fas fa-project-diagram"></i> Data Modeling</span>
         </div>
 
-        <h2>Featured Projects</h2>
-        <div class="projects">
+        <h3 class="projects-header">Featured Projects</h3>
+        
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            
             <!-- Project 1 -->
-            <div class="card">
-                <h3>Finance Dashboard</h3>
-                <p>An interactive dashboard to track revenue and expenses, displaying key financial KPIs to support executive decision-making.</p>
-                <span class="tag">Power BI</span> <span class="tag">DAX</span> <span class="tag">Power Query</span>
+            <div class="project-card">
+                <!-- استبدل الصورة هنا لاحقاً -->
+                <img src="https://via.placeholder.com/600x400/1e293b/ffffff?text=Finance+Dashboard+Preview" alt="Finance Dashboard" class="project-image">
+                <div class="project-content">
+                    <h4>Finance Dashboard</h4>
+                    <p>An interactive Power BI dashboard tracking revenue, expenses, and financial KPIs to drive executive decision-making and performance monitoring.</p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Power BI</span>
+                        <span class="tool-tag">DAX</span>
+                        <span class="tool-tag">Power Query</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Live View</a>
+                        <a href="#" class="btn btn-outline"><i class="fab fa-github"></i> Details</a>
+                    </div>
+                </div>
             </div>
 
             <!-- Project 2 -->
-            <div class="card">
-                <h3>HR Analytics Dashboard</h3>
-                <p>An analytical dashboard to process attendance data, track employee performance, and evaluate HR operational efficiency.</p>
-                <span class="tag">Power BI</span> <span class="tag">Excel</span>
+            <div class="project-card">
+                <!-- استبدل الصورة هنا لاحقاً -->
+                <img src="https://via.placeholder.com/600x400/1e293b/ffffff?text=HR+Analytics+Preview" alt="HR Analytics Dashboard" class="project-image">
+                <div class="project-content">
+                    <h4>HR Analytics Dashboard</h4>
+                    <p>A comprehensive dashboard analyzing employee attendance data, performance metrics, and HR operational efficiency.</p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Power BI</span>
+                        <span class="tool-tag">Data Cleaning</span>
+                        <span class="tool-tag">Excel</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Live View</a>
+                        <a href="#" class="btn btn-outline"><i class="fab fa-github"></i> Details</a>
+                    </div>
+                </div>
             </div>
 
             <!-- Project 3 -->
-            <div class="card">
-                <h3>IT Expenditure Dashboard</h3>
-                <p>Monitoring and analyzing IT infrastructure costs to improve operational budget efficiency and resource allocation.</p>
-                <span class="tag">Power BI</span> <span class="tag">Data Cleaning</span>
+            <div class="project-card">
+                <!-- استبدل الصورة هنا لاحقاً -->
+                <img src="https://via.placeholder.com/600x400/1e293b/ffffff?text=IT+Expenditure+Preview" alt="IT Expenditure Dashboard" class="project-image">
+                <div class="project-content">
+                    <h4>IT Expenditure Dashboard</h4>
+                    <p>Monitors and analyzes IT infrastructure and operational costs to improve budget efficiency and strategic resource allocation.</p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Power BI</span>
+                        <span class="tool-tag">Data Modeling</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Live View</a>
+                        <a href="#" class="btn btn-outline"><i class="fab fa-github"></i> Details</a>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 
