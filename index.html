@@ -1,309 +1,1019 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osama Gharibo | Data Analyst Portfolio</title>
-    <!-- استدعاء مكتبة الأيقونات -->
+    <title>Usame (Osama) Gharibo | Data Analyst, BI & Automation Specialist</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for Interactive HTML/Python/Excel Dashboards -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- خطوط جوجل -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e293b;
-            --bg-color: #f8fafc;
-            --text-color: #334155;
-            --card-bg: #ffffff;
+        body { background-color: #0b1120; color: #e2e8f0; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #0f172a 100%);
-            color: white;
-            padding: 5rem 2rem;
-            text-align: center;
+        .tab-active {
+            background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+            color: white !important;
+            border-color: transparent !important;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
         }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-            font-weight: 700;
-        }
-
-        .hero h2 {
-            font-size: 1.5rem;
-            color: #38bdf8;
-            font-weight: 400;
-            margin: 0 0 20px 0;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            color: #38bdf8;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 20px;
-        }
-
-        /* Skills */
-        .skills-section {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .skills-section h3 {
-            font-size: 2rem;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            background: white;
-            color: var(--secondary-color);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            margin: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-
-        /* Projects Grid */
-        .projects-header {
-            font-size: 2rem;
-            color: var(--secondary-color);
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
-        }
-
-        /* Project Image Placeholder */
-        .project-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background-color: #cbd5e1;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-content h4 {
-            font-size: 1.25rem;
-            margin: 0 0 10px 0;
-            color: var(--secondary-color);
-        }
-
-        .project-content p {
-            font-size: 0.95rem;
-            color: #64748b;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .project-tools {
-            margin-bottom: 1.5rem;
-        }
-
-        .tool-tag {
-            font-size: 0.75rem;
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-            margin-right: 5px;
-            display: inline-block;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
-            text-align: center;
-            padding: 8px 15px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        footer {
-            background: var(--secondary-color);
-            color: #cbd5e1;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- Sticky Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass-card border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-xl text-white shadow-lg">
+                        OG
+                    </div>
+                    <div>
+                        <span class="font-bold text-white tracking-wide">Osama Gharibo</span>
+                        <span class="hidden sm:inline-block text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-full ml-2">7+ Yrs Exp</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+                    <a href="#about" class="hover:text-blue-400 transition">About</a>
+                    <a href="#automation" class="hover:text-blue-400 transition"><i class="fas fa-bolt text-amber-400 mr-1"></i>Power Automate & ETL</a>
+                    <a href="#interactive-lab" class="hover:text-blue-400 transition"><i class="fas fa-laptop-code text-emerald-400 mr-1"></i>HTML / Python / Excel Lab</a>
+                    <a href="#powerbi" class="hover:text-blue-400 transition"><i class="fas fa-chart-bar text-yellow-400 mr-1"></i>Live Power BI</a>
+                    <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition shadow-lg shadow-blue-600/30">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <header class="hero">
-        <h1>Osama Gharibo</h1>
-        <h2>Data Analyst & BI Developer</h2>
-        <div class="social-links">
-            <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="mailto:your-email@example.com" title="Email Me"><i class="fas fa-envelope"></i></a>
-        </div>
-    </header>
-
-    <div class="container">
-        <!-- Skills Section -->
-        <div class="skills-section">
-            <h3>Technical Expertise</h3>
-            <span class="skill-tag"><i class="fas fa-chart-bar"></i> Power BI</span>
-            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
-            <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
-            <span class="skill-tag"><i class="fas fa-chart-pie"></i> Looker Studio</span>
-            <span class="skill-tag"><i class="fas fa-project-diagram"></i> Data Modeling</span>
-        </div>
-
-        <h3 class="projects-header">Featured Projects</h3>
+    <section id="about" class="pt-32 pb-20 px-4 relative overflow-hidden">
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/15 blur-[130px] rounded-full pointer-events-none"></div>
         
-        <!-- Projects Grid -->
-        <div class="projects-grid">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-blue-400 text-sm font-medium mb-6">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                Available for Remote & Global Opportunities
+            </div>
             
-            <!-- Project 1 -->
-            <div class="project-card">
-                <!-- استبدل الصورة هنا لاحقاً -->
-                <img src="https://via.placeholder.com/600x400/1e293b/ffffff?text=Finance+Dashboard+Preview" alt="Finance Dashboard" class="project-image">
-                <div class="project-content">
-                    <h4>Finance Dashboard</h4>
-                    <p>An interactive Power BI dashboard tracking revenue, expenses, and financial KPIs to drive executive decision-making and performance monitoring.</p>
-                    <div class="project-tools">
-                        <span class="tool-tag">Power BI</span>
-                        <span class="tool-tag">DAX</span>
-                        <span class="tool-tag">Power Query</span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-4">
+                Hi, I'm <span class="gradient-text">Usame (Osama) Gharibo</span>
+            </h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-slate-300 mb-6">
+                Senior Data Analyst | BI Developer | Power Automate & IM Specialist
+            </h2>
+            <p class="max-w-3xl mx-auto text-slate-400 text-base sm:text-lg leading-relaxed mb-8">
+                Results-driven Information Management & Data Analysis professional with over <strong>7 years of experience</strong> across humanitarian organizations (Relief International, ACTED/UNICEF) and commercial enterprises. Expert in transforming complex datasets into actionable insights using <strong>Power BI, Python, SQL, Advanced Excel, and Power Automate</strong>.
+            </p>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10">
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-3xl font-bold text-blue-400">7+</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Years Experience</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-3xl font-bold text-emerald-400">25+</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Automated Workflows</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-3xl font-bold text-amber-400">40+</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Interactive Dashboards</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-3xl font-bold text-purple-400">4</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Languages (AR, KU, EN, TR)</div>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#interactive-lab" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center gap-2">
+                    <i class="fas fa-play-circle"></i> Explore Live Dashboards
+                </a>
+                <a href="#automation" class="glass-card hover:bg-slate-800 text-white font-semibold px-6 py-3 rounded-xl transition flex items-center gap-2">
+                    <i class="fas fa-robot text-amber-400"></i> View Power Automate Flows
+                </a>
+                <a href="mailto:osama.gharebo@gmail.com" class="glass-card hover:bg-slate-800 text-slate-300 font-semibold px-6 py-3 rounded-xl transition flex items-center gap-2">
+                    <i class="fas fa-envelope text-blue-400"></i> osama.gharebo@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Tech Stack Pills -->
+    <section class="py-8 border-y border-slate-800/80 bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-3">
+            <span class="px-4 py-2 rounded-lg bg-slate-800/90 border border-slate-700 text-sm font-medium text-yellow-400"><i class="fas fa-chart-bar mr-2"></i>Power BI & DAX</span>
+            <span class="px-4 py-2 rounded-lg bg-slate-800/90 border border-slate-700 text-sm font-medium text-sky-400"><i class="fas fa-bolt mr-2"></i>Microsoft Power Automate</span>
+            <span class="px-4 py-2 rounded-lg bg-slate-800/90 border border-slate-700 text-sm font-medium text-blue-400"><i class="fab fa-python mr-2"></i>Python (Pandas, NumPy, APIs)</span>
+            <span class="px-4 py-2 rounded-lg bg-slate-800/90 border border-slate-700 text-sm font-medium text-emerald-400"><i class="fas fa-file-excel mr-2"></i>Advanced Excel & Power Query</span>
+            <span class="px-4 py-2 rounded-lg bg-slate-800/90 border border-slate-700 text-sm font-medium text-purple-400"><i class="fas fa-database mr-2"></i>SQL Database Design</span>
+            <span class="px-4 py-2 rounded-lg bg-slate-800/90 border border-slate-700 text-sm font-medium text-rose-400"><i class="fas fa-clipboard-check mr-2"></i>Kobo Toolbox / ODK / LogAlto</span>
+            <span class="px-4 py-2 rounded-lg bg-slate-800/90 border border-slate-700 text-sm font-medium text-indigo-400"><i class="fas fa-code mr-2"></i>HTML5 / CSS / JS Dashboards</span>
+        </div>
+    </section>
+
+    <!-- SECTION 1: POWER AUTOMATE & ETL AUTOMATION ARCHITECTURE -->
+    <section id="automation" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-14">
+            <span class="text-amber-400 font-semibold text-sm uppercase tracking-wider"><i class="fas fa-cogs mr-1"></i> Workflow Engineering & ETL</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Power Automate & Python Automation</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto mt-3">
+                Eliminating manual data entry by building end-to-end automated pipelines connecting field data collection tools directly to executive dashboards.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Automation Flow 1 -->
+            <div class="glass-card rounded-2xl p-6 border-t-4 border-t-sky-500 flex flex-col justify-between hover:-translate-y-1 transition duration-300">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-sky-500/20 text-sky-400 text-xs font-bold px-3 py-1 rounded-full border border-sky-500/30">Power Automate Cloud Flow</span>
+                        <i class="fas fa-bolt text-2xl text-sky-400"></i>
                     </div>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Live View</a>
-                        <a href="#" class="btn btn-outline"><i class="fab fa-github"></i> Details</a>
+                    <h3 class="text-xl font-bold text-white mb-2">CFRM Hotline & Kobo Real-Time Alert System</h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Automated the Complaints & Feedback Response Mechanism (CFRM). Whenever a field form or hotline ticket is submitted, Power Automate validates data, routes urgent cases, and updates Power BI in real time.
+                    </p>
+                    
+                    <!-- Visual Pipeline Steps -->
+                    <div class="space-y-3 bg-slate-900/80 p-4 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold">1</span>
+                            <span class="text-slate-200"><strong>Trigger:</strong> Kobo Toolbox / MS Forms Webhook</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold">2</span>
+                            <span class="text-slate-200"><strong>Action:</strong> Power Automate Parses JSON & Categorizes</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">3</span>
+                            <span class="text-slate-200"><strong>Condition:</strong> High-Priority -> Instant Teams/Email Alert</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">4</span>
+                            <span class="text-slate-200"><strong>Output:</strong> Logs to SharePoint/SQL & Refreshes Power BI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-emerald-400 font-semibold">
+                    <span><i class="fas fa-check-circle mr-1"></i> Saved 15+ Hours/Week</span>
+                    <span>Zero Data Delay</span>
+                </div>
+            </div>
+
+            <!-- Automation Flow 2 -->
+            <div class="glass-card rounded-2xl p-6 border-t-4 border-t-blue-500 flex flex-col justify-between hover:-translate-y-1 transition duration-300">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-blue-500/20 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/30">Python API + Excel ETL</span>
+                        <i class="fab fa-python text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">LogAlto & ActivityInfo API Master Consolidator</h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Built an automated Python script that connects to humanitarian M&E platforms via REST API, cleans thousands of beneficiary records using Pandas, and populates formatted Master Excel trackers.
+                    </p>
+                    
+                    <div class="space-y-3 bg-slate-900/80 p-4 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">1</span>
+                            <span class="text-slate-200"><strong>Extract:</strong> Python `requests` fetches LogAlto API Data</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">2</span>
+                            <span class="text-slate-200"><strong>Transform:</strong> Pandas deduplication & outlier detection</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">3</span>
+                            <span class="text-slate-200"><strong>Load:</strong> `openpyxl` updates Master Excel & Pivot Tables</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">4</span>
+                            <span class="text-slate-200"><strong>Sync:</strong> Power Automate syncs file to OneDrive/Donor Portal</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-emerald-400 font-semibold">
+                    <span><i class="fas fa-check-circle mr-1"></i> 100% Data Accuracy</span>
+                    <span>Automated QA Audit</span>
+                </div>
+            </div>
+
+            <!-- Automation Flow 3 -->
+            <div class="glass-card rounded-2xl p-6 border-t-4 border-t-emerald-500 flex flex-col justify-between hover:-translate-y-1 transition duration-300">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30">Power Automate + Office Scripts</span>
+                        <i class="fas fa-file-invoice-dollar text-2xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Automated Donor & Financial Reporting Engine</h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Designed an end-of-month scheduled workflow that aggregates multi-project budgets, calculates burn rates, converts Excel summary sheets into PDF reports, and emails stakeholders automatically.
+                    </p>
+                    
+                    <div class="space-y-3 bg-slate-900/80 p-4 rounded-xl border border-slate-800 text-xs">
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">1</span>
+                            <span class="text-slate-200"><strong>Trigger:</strong> Scheduled Recurrence (Monthly / Weekly)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">2</span>
+                            <span class="text-slate-200"><strong>Script:</strong> Runs Excel Power Query & Office Script</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold">3</span>
+                            <span class="text-slate-200"><strong>Convert:</strong> Generates Executive PDF Report</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold">4</span>
+                            <span class="text-slate-200"><strong>Deliver:</strong> Dispatches customized emails via Outlook</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-emerald-400 font-semibold">
+                    <span><i class="fas fa-check-circle mr-1"></i> 80% Faster Reporting</span>
+                    <span>Donor Compliant</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: MULTI-TECH INTERACTIVE DASHBOARD LAB (HTML / PYTHON / EXCEL) -->
+    <section id="interactive-lab" class="py-20 px-4 bg-slate-900/60 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-emerald-400 font-semibold text-sm uppercase tracking-wider"><i class="fas fa-flask mr-1"></i> Live Interactive Sandbox</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">HTML, Python & Excel Interactive Dashboards</h2>
+                <p class="text-slate-400 max-w-3xl mx-auto mt-3">
+                    Click through the tabs below to interact with live web-based dashboards built using <strong>HTML5/Chart.js</strong>, <strong>Python (Pandas/Plotly simulation)</strong>, and <strong>Advanced Excel Models</strong>. Use the filters inside each dashboard to test real-time reactivity!
+                </p>
+            </div>
+
+            <!-- Dashboard Switcher Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <button onclick="switchLabTab('meal')" id="tab-meal" class="lab-tab tab-active px-5 py-3 rounded-xl font-semibold text-sm glass-card transition flex items-center gap-2">
+                    <i class="fas fa-headset"></i> 1. MEAL & CFRM Tracker (HTML/JS)
+                </button>
+                <button onclick="switchLabTab('wash')" id="tab-wash" class="lab-tab px-5 py-3 rounded-xl font-semibold text-sm glass-card text-slate-300 hover:text-white transition flex items-center gap-2">
+                    <i class="fas fa-tint text-sky-400"></i> 2. WASH Water Ops (HTML/JS)
+                </button>
+                <button onclick="switchLabTab('python')" id="tab-python" class="lab-tab px-5 py-3 rounded-xl font-semibold text-sm glass-card text-slate-300 hover:text-white transition flex items-center gap-2">
+                    <i class="fab fa-python text-yellow-400"></i> 3. Python Analytics & API (Python)
+                </button>
+                <button onclick="switchLabTab('excel')" id="tab-excel" class="lab-tab px-5 py-3 rounded-xl font-semibold text-sm glass-card text-slate-300 hover:text-white transition flex items-center gap-2">
+                    <i class="fas fa-file-excel text-emerald-400"></i> 4. Executive Budget & Pivot (Excel)
+                </button>
+            </div>
+
+            <!-- DASHBOARD 1: MEAL & CFRM (HTML/JS) -->
+            <div id="panel-meal" class="lab-panel glass-card rounded-2xl p-6 sm:p-8 border border-slate-700 shadow-2xl">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-blue-500/20 text-blue-400 text-xs font-bold px-2.5 py-1 rounded">HTML5 + Chart.js</span>
+                            <span class="text-xs text-slate-400">Inspired by Relief International MEAL Role</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mt-1">Complaints & Feedback Response Mechanism (CFRM)</h3>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <label class="text-xs text-slate-400 font-semibold uppercase">Filter Region:</label>
+                        <select id="mealRegionFilter" onchange="updateMealDashboard()" class="bg-slate-800 border border-slate-600 text-white text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500">
+                            <option value="ALL">All Regions (Gaziantep, Hatay, Urfa)</option>
+                            <option value="GAZ">Gaziantep Hub</option>
+                            <option value="HAT">Hatay Field Office</option>
+                            <option value="URF">Şanlıurfa Center</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- KPIs -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-blue-500">
+                        <div class="text-xs text-slate-400">Total Cases Logged</div>
+                        <div id="meal-kpi-total" class="text-2xl font-bold text-white mt-1">4,820</div>
+                        <div class="text-xs text-emerald-400 mt-1"><i class="fas fa-arrow-up"></i> 100% Categorized</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-emerald-500">
+                        <div class="text-xs text-slate-400">Resolution Rate (Closed)</div>
+                        <div id="meal-kpi-resolved" class="text-2xl font-bold text-emerald-400 mt-1">94.2%</div>
+                        <div class="text-xs text-slate-400 mt-1">Target SLA: >90%</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-amber-500">
+                        <div class="text-xs text-slate-400">Avg Response Time</div>
+                        <div id="meal-kpi-time" class="text-2xl font-bold text-amber-400 mt-1">1.8 Days</div>
+                        <div class="text-xs text-emerald-400 mt-1">Automated via Power Automate</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-purple-500">
+                        <div class="text-xs text-slate-400">Beneficiary Satisfaction</div>
+                        <div id="meal-kpi-sat" class="text-2xl font-bold text-purple-400 mt-1">91.5%</div>
+                        <div class="text-xs text-slate-400 mt-1">Post-Resolution Survey</div>
+                    </div>
+                </div>
+
+                <!-- Charts Grid -->
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-sm font-semibold text-slate-300 mb-3">Monthly Feedback & Resolution Trend</h4>
+                        <div class="h-64"><canvas id="mealTrendChart"></canvas></div>
+                    </div>
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-sm font-semibold text-slate-300 mb-3">Feedback Breakdown by Category</h4>
+                        <div class="h-64"><canvas id="mealCategoryChart"></canvas></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 2 -->
-            <div class="project-card">
-                <!-- استبدل الصورة هنا لاحقاً -->
-                <img src="https://via.placeholder.com/600x400/1e293b/ffffff?text=HR+Analytics+Preview" alt="HR Analytics Dashboard" class="project-image">
-                <div class="project-content">
-                    <h4>HR Analytics Dashboard</h4>
-                    <p>A comprehensive dashboard analyzing employee attendance data, performance metrics, and HR operational efficiency.</p>
-                    <div class="project-tools">
-                        <span class="tool-tag">Power BI</span>
-                        <span class="tool-tag">Data Cleaning</span>
-                        <span class="tool-tag">Excel</span>
+            <!-- DASHBOARD 2: WASH EMERGENCY WATER DISTRIBUTION (HTML/JS) -->
+            <div id="panel-wash" class="lab-panel hidden glass-card rounded-2xl p-6 sm:p-8 border border-slate-700 shadow-2xl">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-sky-500/20 text-sky-400 text-xs font-bold px-2.5 py-1 rounded">HTML5 + Interactive JS</span>
+                            <span class="text-xs text-slate-400">Inspired by ACTED & UNICEF Emergency WASH Project</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mt-1">Emergency Water Distribution & Fleet Tracker</h3>
                     </div>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Live View</a>
-                        <a href="#" class="btn btn-outline"><i class="fab fa-github"></i> Details</a>
+                    <div class="flex items-center gap-3">
+                        <label class="text-xs text-slate-400 font-semibold uppercase">Select Zone:</label>
+                        <select id="washZoneFilter" onchange="updateWashDashboard()" class="bg-slate-800 border border-slate-600 text-white text-sm rounded-lg px-3 py-2">
+                            <option value="ALL">All Zones (Adıyaman & Kahramanmaraş)</option>
+                            <option value="ADI">Adıyaman Camps (10 Tankers)</option>
+                            <option value="MAR">Kahramanmaraş Sites (8 Tankers)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-sky-500">
+                        <div class="text-xs text-slate-400">Water Distributed (Liters)</div>
+                        <div id="wash-kpi-liters" class="text-2xl font-bold text-sky-400 mt-1">14.2M L</div>
+                        <div class="text-xs text-slate-400 mt-1">Chlorine Tested & Verified</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-indigo-500">
+                        <div class="text-xs text-slate-400">Active Water Tankers</div>
+                        <div id="wash-kpi-tankers" class="text-2xl font-bold text-white mt-1">18 Tankers</div>
+                        <div class="text-xs text-emerald-400 mt-1">18 Daily Workers Monitored</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-emerald-500">
+                        <div class="text-xs text-slate-400">Beneficiaries Reached</div>
+                        <div id="wash-kpi-ben" class="text-2xl font-bold text-emerald-400 mt-1">68,500</div>
+                        <div class="text-xs text-slate-400 mt-1">Sphere Standards Met</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-rose-500">
+                        <div class="text-xs text-slate-400">Fleet Delivery Efficiency</div>
+                        <div id="wash-kpi-eff" class="text-2xl font-bold text-rose-400 mt-1">96.8%</div>
+                        <div class="text-xs text-slate-400 mt-1">Daily Kobo GPS Logs</div>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-sm font-semibold text-slate-300 mb-3">Daily Water Volume Delivered vs Target (m³)</h4>
+                        <div class="h-64"><canvas id="washVolumeChart"></canvas></div>
+                    </div>
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-sm font-semibold text-slate-300 mb-3">Tanker Trips & Beneficiary Reach by Camp</h4>
+                        <div class="h-64"><canvas id="washCampChart"></canvas></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 3 -->
-            <div class="project-card">
-                <!-- استبدل الصورة هنا لاحقاً -->
-                <img src="https://via.placeholder.com/600x400/1e293b/ffffff?text=IT+Expenditure+Preview" alt="IT Expenditure Dashboard" class="project-image">
-                <div class="project-content">
-                    <h4>IT Expenditure Dashboard</h4>
-                    <p>Monitors and analyzes IT infrastructure and operational costs to improve budget efficiency and strategic resource allocation.</p>
-                    <div class="project-tools">
-                        <span class="tool-tag">Power BI</span>
-                        <span class="tool-tag">Data Modeling</span>
+            <!-- DASHBOARD 3: PYTHON ANALYTICS & DATA PIPELINE -->
+            <div id="panel-python" class="lab-panel hidden glass-card rounded-2xl p-6 sm:p-8 border border-slate-700 shadow-2xl">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-yellow-500/20 text-yellow-400 text-xs font-bold px-2.5 py-1 rounded"><i class="fab fa-python mr-1"></i>Python + Pandas + SQL</span>
+                            <span class="text-xs text-slate-400">Automated ETL & Anomaly Detection</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mt-1">Python Indicator Pipeline & Statistical Analytics</h3>
                     </div>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Live View</a>
-                        <a href="#" class="btn btn-outline"><i class="fab fa-github"></i> Details</a>
+                    <div class="flex items-center gap-3">
+                        <button onclick="togglePythonCode()" class="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-lg transition flex items-center gap-2">
+                            <i class="fas fa-code"></i> View Python ETL Script
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Python Code Viewer -->
+                <div id="pythonCodeBlock" class="hidden my-4 bg-slate-950 p-4 rounded-xl border border-yellow-500/40 font-mono text-xs text-slate-300 overflow-x-auto">
+                    <div class="flex justify-between items-center text-yellow-400 mb-2 pb-2 border-b border-slate-800">
+                        <span># automated_meal_pipeline.py (Pandas + LogAlto API + Excel Export)</span>
+                        <span class="text-emerald-400">Status: Production Ready</span>
+                    </div>
+<pre><code>import pandas as pd
+import numpy as np
+import requests
+
+def fetch_and_clean_indicators(api_url, token):
+    headers = {'Authorization': f'Bearer {token}'}
+    response = requests.get(api_url, headers=headers)
+    df = pd.DataFrame(response.json()['data'])
+    
+    # 1. Data Cleaning & Standardization
+    df['submission_date'] = pd.to_datetime(df['submission_date'])
+    df.drop_duplicates(subset=['beneficiary_id', 'project_code'], keep='last', inplace=True)
+    df['assistance_value'] = df['assistance_value'].fillna(df.groupby('project_code')['assistance_value'].transform('median'))
+    
+    # 2. Statistical Z-Score Anomaly Detection
+    df['z_score'] = np.abs((df['assistance_value'] - df['assistance_value'].mean()) / df['assistance_value'].std())
+    df['is_outlier'] = df['z_score'] > 3.0
+    
+    # 3. Export Clean Master File for Power BI
+    with pd.ExcelWriter('Master_MEAL_Indicators_2026.xlsx', engine='openpyxl') as writer:
+        df[df['is_outlier'] == False].to_excel(writer, sheet_name='Clean_Data', index=False)
+        df[df['is_outlier'] == True].to_excel(writer, sheet_name='QA_Flagged_Records', index=False)
+    return df.describe()</code></pre>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-yellow-400">
+                        <div class="text-xs text-slate-400">Records Processed (Pandas)</div>
+                        <div class="text-2xl font-bold text-white mt-1">245,890</div>
+                        <div class="text-xs text-emerald-400 mt-1">Execution Time: 1.4 sec</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-rose-500">
+                        <div class="text-xs text-slate-400">Duplicates & Outliers Removed</div>
+                        <div class="text-2xl font-bold text-rose-400 mt-1">3,412</div>
+                        <div class="text-xs text-slate-400 mt-1">Auto-flagged via Z-Score</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-blue-400">
+                        <div class="text-xs text-slate-400">SQL Database Joins</div>
+                        <div class="text-2xl font-bold text-blue-400 mt-1">12 Tables</div>
+                        <div class="text-xs text-slate-400 mt-1">Normalized Schema</div>
+                    </div>
+                    <div class="bg-slate-900/90 p-4 rounded-xl border-l-4 border-emerald-400">
+                        <div class="text-xs text-slate-400">Data Quality Index</div>
+                        <div class="text-2xl font-bold text-emerald-400 mt-1">99.4%</div>
+                        <div class="text-xs text-slate-400 mt-1">Validated Schema</div>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-sm font-semibold text-slate-300 mb-3">Python Regression: Program Cost vs. Beneficiary Impact</h4>
+                        <div class="h-64"><canvas id="pythonScatterChart"></canvas></div>
+                    </div>
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-sm font-semibold text-slate-300 mb-3">Automated Data Quality Audit (Before vs After Python Script)</h4>
+                        <div class="h-64"><canvas id="pythonQualityChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DASHBOARD 4: ADVANCED EXCEL & FINANCIAL PIVOT MODEL -->
+            <div id="panel-excel" class="lab-panel hidden glass-card rounded-2xl p-6 sm:p-8 border border-emerald-600/40 shadow-2xl">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded"><i class="fas fa-file-excel mr-1"></i>Advanced Excel + Power Query</span>
+                            <span class="text-xs text-slate-400">Dynamic Pivot Tables, Slicers & Financial Modeling</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mt-1">Executive Grant Budget & Donor Financial Tracker</h3>
+                    </div>
+                    <!-- Excel Slicer Buttons -->
+                    <div class="flex items-center gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-700">
+                        <span class="text-xs text-emerald-400 font-semibold px-2">Excel Slicer:</span>
+                        <button onclick="updateExcelSlicer('2025')" id="xl-2025" class="px-3 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white">FY 2025</button>
+                        <button onclick="updateExcelSlicer('2026')" id="xl-2026" class="px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white">FY 2026</button>
+                    </div>
+                </div>
+
+                <!-- Formula Bar Simulation -->
+                <div class="my-4 flex items-center bg-slate-950 border border-slate-700 rounded-lg overflow-hidden text-xs font-mono">
+                    <span class="bg-emerald-700 text-white px-3 py-2 font-bold">fx</span>
+                    <span class="text-slate-300 px-3 py-2 truncate">=SUMIFS(tbl_Transactions[Amount], tbl_Transactions[Sector], $B4, tbl_Transactions[FiscalYear], Slicer_FY) / GETPIVOTDATA("Budget",$A$3)</span>
+                </div>
+
+                <!-- Interactive Pivot Table & Chart -->
+                <div class="grid lg:grid-cols-12 gap-6 mt-6">
+                    <!-- Simulated Excel Pivot Table -->
+                    <div class="lg:col-span-7 bg-slate-900/90 rounded-xl border border-slate-800 overflow-hidden">
+                        <div class="bg-emerald-900/40 px-4 py-3 border-b border-emerald-800/50 flex justify-between items-center">
+                            <span class="text-sm font-bold text-emerald-300"><i class="fas fa-table mr-2"></i>PivotTable: Sector Budget vs. Actual Burn Rate</span>
+                            <span class="text-xs text-slate-400">Auto-Refreshed via Power Query</span>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs sm:text-sm">
+                                <thead class="bg-slate-800/80 text-slate-300 uppercase text-xs">
+                                    <tr>
+                                        <th class="py-3 px-4">Program Sector</th>
+                                        <th class="py-3 px-4 text-right">Allocated Budget</th>
+                                        <th class="py-3 px-4 text-right">Actual Spent</th>
+                                        <th class="py-3 px-4 text-right">Burn Rate %</th>
+                                        <th class="py-3 px-4 text-center">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="excelPivotBody" class="divide-y divide-slate-800 text-slate-200">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Excel Chart -->
+                    <div class="lg:col-span-5 bg-slate-900/70 p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-sm font-semibold text-emerald-400 mb-3">Excel PivotChart: Budget vs Actuals</h4>
+                        <div class="h-64"><canvas id="excelBarChart"></canvas></div>
                     </div>
                 </div>
             </div>
 
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2026 Osama Gharibo. All rights reserved.</p>
+    <!-- SECTION 3: LIVE MICROSOFT POWER BI DASHBOARDS (EMBEDDED) -->
+    <section id="powerbi" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-10">
+            <span class="text-yellow-400 font-semibold text-sm uppercase tracking-wider"><i class="fas fa-chart-pie mr-1"></i> Microsoft Power BI Service</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Live Interactive Power BI Dashboards</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto mt-3">
+                Select any of my published Power BI reports below to interact directly with DAX measures, dynamic slicers, and drill-through visuals live in your browser.
+            </p>
+        </div>
+
+        <!-- Power BI Switcher Buttons -->
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+            <button onclick="switchPBI(0)" id="pbi-btn-0" class="pbi-btn tab-active px-6 py-3 rounded-xl font-semibold text-sm glass-card transition">
+                <i class="fas fa-truck-loading mr-2"></i>1. Supply Chain & Logistics Performance
+            </button>
+            <button onclick="switchPBI(1)" id="pbi-btn-1" class="pbi-btn px-6 py-3 rounded-xl font-semibold text-sm glass-card text-slate-300 hover:text-white transition">
+                <i class="fas fa-users-cog mr-2"></i>2. HR Analytics & Attendance
+            </button>
+            <button onclick="switchPBI(2)" id="pbi-btn-2" class="pbi-btn px-6 py-3 rounded-xl font-semibold text-sm glass-card text-slate-300 hover:text-white transition">
+                <i class="fas fa-server mr-2"></i>3. IT Expenditure & Budget Variance
+            </button>
+        </div>
+
+        <!-- Power BI Active Viewer Card -->
+        <div class="glass-card rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+            <div class="bg-slate-900 px-6 py-4 border-b border-slate-800 flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <h3 id="pbi-title" class="text-xl font-bold text-white">Supply Chain & Logistics Performance Dashboard</h3>
+                    <p id="pbi-desc" class="text-xs sm:text-sm text-slate-400 mt-0.5">Tracking 53K+ orders, $11.8M sales, on-time delivery rate, and shipping mode risk analysis using advanced DAX.</p>
+                </div>
+                <a id="pbi-link" href="https://app.powerbi.com/view?r=eyJrIjoiMWVkNWU5OWEtYTRlNS00OTZiLThhZGUtZmI4YmRlNmY1YTY3IiwidCI6ImEzODAwY2M1LWEwOTMtNGJhMy04MTFlLWVmY2FhOGVhN2Q2MyIsImMiOjZ9" target="_blank" class="bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-lg transition flex items-center gap-2">
+                    <i class="fas fa-external-link-alt"></i> Open Full Screen
+                </a>
+            </div>
+            <div class="w-full h-[550px] sm:h-[650px] bg-slate-950">
+                <iframe id="pbi-frame" class="w-full h-full border-0" src="https://app.powerbi.com/view?r=eyJrIjoiMWVkNWU5OWEtYTRlNS00OTZiLThhZGUtZmI4YmRlNmY1YTY3IiwidCI6ImEzODAwY2M1LWEwOTMtNGJhMy04MTFlLWVmY2FhOGVhN2Q2MyIsImMiOjZ9" allowFullScreen="true"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: WORK EXPERIENCE & CERTIFICATIONS (FROM CV) -->
+    <section id="experience" class="py-20 px-4 bg-slate-900/50 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
+            
+            <!-- Left Column: Work Experience Timeline -->
+            <div class="lg:col-span-7">
+                <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                    <i class="fas fa-briefcase text-blue-400"></i> Professional Experience
+                </h3>
+                
+                <div class="space-y-8 border-l-2 border-slate-700 pl-6 ml-3 relative">
+                    <!-- Job 1 -->
+                    <div class="relative">
+                        <div class="w-4 h-4 rounded-full bg-blue-500 absolute -left-[33px] top-1.5 border-4 border-slate-900"></div>
+                        <span class="text-xs font-semibold text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded">Jan 2024 – Present</span>
+                        <h4 class="text-lg font-bold text-white mt-2">MEAL Assistant | Relief International</h4>
+                        <p class="text-xs text-slate-400 mb-2">Gaziantep, Turkey (Remote & Field Support)</p>
+                        <ul class="text-sm text-slate-300 space-y-1 list-disc list-inside">
+                            <li>Primary focal point for Complaints & Feedback Response Mechanism (CFRM) and hotline operations.</li>
+                            <li>Analyzed CFRM trends using Excel and Power BI to drive program accountability and senior management decisions.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="relative">
+                        <div class="w-4 h-4 rounded-full bg-sky-400 absolute -left-[33px] top-1.5 border-4 border-slate-900"></div>
+                        <span class="text-xs font-semibold text-sky-400 bg-sky-500/10 px-2.5 py-1 rounded">May 2023 – Dec 2023</span>
+                        <h4 class="text-lg font-bold text-white mt-2">WASH Project Assistant | ACTED (in partnership with UNICEF)</h4>
+                        <p class="text-xs text-slate-400 mb-2">Adıyaman & Kahramanmaraş, Turkey</p>
+                        <ul class="text-sm text-slate-300 space-y-1 list-disc list-inside">
+                            <li>Coordinated large-scale emergency water distribution data for 18 water tankers and 18 daily workers.</li>
+                            <li>Monitored daily volumes and beneficiary reach, resolving operational bottlenecks via daily data monitoring.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div class="relative">
+                        <div class="w-4 h-4 rounded-full bg-indigo-400 absolute -left-[33px] top-1.5 border-4 border-slate-900"></div>
+                        <span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded">Jan 2021 – Apr 2023</span>
+                        <h4 class="text-lg font-bold text-white mt-2">Information Management Officer | MOZUN</h4>
+                        <p class="text-xs text-slate-400 mb-2">Gaziantep, Turkey</p>
+                        <ul class="text-sm text-slate-300 space-y-1 list-disc list-inside">
+                            <li>Led SQL and Excel database design across multiple humanitarian projects.</li>
+                            <li>Built interactive Power BI dashboards and automated Python (Pandas) data cleaning scripts for Kobo/ODK surveys.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Job 4 -->
+                    <div class="relative">
+                        <div class="w-4 h-4 rounded-full bg-emerald-400 absolute -left-[33px] top-1.5 border-4 border-slate-900"></div>
+                        <span class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">Nov 2018 – Dec 2020</span>
+                        <h4 class="text-lg font-bold text-white mt-2">Information Management Officer | HUMAN CARE</h4>
+                        <p class="text-xs text-slate-400 mb-2">Gaziantep, Turkey</p>
+                        <ul class="text-sm text-slate-300 space-y-1 list-disc list-inside">
+                            <li>Managed high-volume data validation using Excel, LogAlto, and ActivityInfo.</li>
+                            <li>Designed Kobo/ODK tools, trained field staff, and enforced strict data quality SOPs.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Job 5 & 6 Condensed -->
+                    <div class="relative">
+                        <div class="w-4 h-4 rounded-full bg-slate-500 absolute -left-[33px] top-1.5 border-4 border-slate-900"></div>
+                        <span class="text-xs font-semibold text-slate-400 bg-slate-800 px-2.5 py-1 rounded">2016 – 2018</span>
+                        <h4 class="text-lg font-bold text-white mt-2">Data Entry & Database Officer (Vision) | Accountant (EVA Co.)</h4>
+                        <p class="text-sm text-slate-300 mt-1">Managed large beneficiary databases, financial bookkeeping (Al-Ameen), cost accounting, and Arabic-Turkish translation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Education, Certifications & Languages -->
+            <div class="lg:col-span-5 space-y-8">
+                <!-- Education -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-graduation-cap text-amber-400"></i> Education
+                    </h3>
+                    <div class="border-l-2 border-amber-400 pl-4">
+                        <div class="text-base font-bold text-white">Bachelor of Business Administration (English)</div>
+                        <div class="text-sm text-slate-400">Anadolu University | Eskişehir, Turkey (2019 – 2025)</div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-certificate text-emerald-400"></i> Key Certifications
+                    </h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+                            <div class="font-semibold text-white">MEAL DPro Certification</div>
+                            <div class="text-xs text-slate-400">Humanitarian Leadership Academy & CRS</div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+                            <div class="font-semibold text-white">Advanced Power BI for Data Visualization</div>
+                            <div class="text-xs text-slate-400">Microsoft Learn & UNICEF</div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+                            <div class="font-semibold text-white">Data Analysis with Python & SQL for Data Science</div>
+                            <div class="text-xs text-slate-400">Coursera, edX & Udemy</div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+                            <div class="font-semibold text-white">Advanced Excel & Business Intelligence</div>
+                            <div class="text-xs text-slate-400">Udemy, Skillshare & UNICEF</div>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+                            <div class="font-semibold text-white">Kobo Toolbox & Information Management</div>
+                            <div class="text-xs text-slate-400">UNHCR Learn & Connect, DisasterReady</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-language text-purple-400"></i> Languages
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                            <div class="font-bold text-white">Arabic</div>
+                            <div class="text-xs text-emerald-400">Native Speaker</div>
+                        </div>
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                            <div class="font-bold text-white">Kurdish</div>
+                            <div class="text-xs text-emerald-400">Native Speaker</div>
+                        </div>
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                            <div class="font-bold text-white">English</div>
+                            <div class="text-xs text-blue-400">C1 (Advanced)</div>
+                        </div>
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                            <div class="font-bold text-white">Turkish</div>
+                            <div class="text-xs text-blue-400">C1 (Advanced)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Footer -->
+    <footer id="contact" class="py-16 px-4 bg-slate-950 border-t border-slate-800 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-3">Let's Build Data-Driven Solutions Together</h2>
+            <p class="text-slate-400 mb-8">Looking for a Data Analyst, BI Developer, or IM/MEAL Specialist? Reach out directly:</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <a href="mailto:osama.gharebo@gmail.com" class="glass-card hover:border-blue-500 px-6 py-4 rounded-xl flex items-center gap-3 transition">
+                    <i class="fas fa-envelope text-xl text-blue-400"></i>
+                    <span class="text-white font-medium">osama.gharebo@gmail.com</span>
+                </a>
+                <a href="https://wa.me/905525999987" target="_blank" class="glass-card hover:border-emerald-500 px-6 py-4 rounded-xl flex items-center gap-3 transition">
+                    <i class="fab fa-whatsapp text-xl text-emerald-400"></i>
+                    <span class="text-white font-medium">+90 552 599 99 87</span>
+                </a>
+                <a href="https://github.com/osamagharebo-cyber" target="_blank" class="glass-card hover:border-purple-500 px-6 py-4 rounded-xl flex items-center gap-3 transition">
+                    <i class="fab fa-github text-xl text-purple-400"></i>
+                    <span class="text-white font-medium">GitHub Profile</span>
+                </a>
+            </div>
+
+            <p class="text-xs text-slate-500">&copy; 2026 Usame (Osama) Gharibo | Gaziantep, Turkey. All rights reserved.</p>
+        </div>
     </footer>
 
+    <!-- INTERACTIVE SCRIPTS FOR CHARTS & TABS -->
+    <script>
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+
+        // --- 1. MEAL & CFRM CHARTS ---
+        let mealTrendChart, mealCategoryChart;
+        const mealData = {
+            ALL: { total: '4,820', resolved: '94.2%', time: '1.8 Days', sat: '91.5%', trend: [380, 420, 460, 510, 490, 560], cat: [42, 28, 18, 12] },
+            GAZ: { total: '2,150', resolved: '96.0%', time: '1.4 Days', sat: '93.8%', trend: [170, 190, 210, 230, 220, 260], cat: [45, 25, 20, 10] },
+            HAT: { total: '1,640', resolved: '92.1%', time: '2.1 Days', sat: '89.2%', trend: [130, 140, 150, 175, 165, 190], cat: [38, 32, 16, 14] },
+            URF: { total: '1,030', resolved: '93.8%', time: '1.9 Days', sat: '91.0%', trend: [80, 90, 100, 105, 105, 110], cat: [40, 29, 19, 12] }
+        };
+
+        function initMealCharts() {
+            const ctx1 = document.getElementById('mealTrendChart').getContext('2d');
+            mealTrendChart = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                    datasets: [{
+                        label: 'Logged Feedback Cases',
+                        data: mealData.ALL.trend,
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            const ctx2 = document.getElementById('mealCategoryChart').getContext('2d');
+            mealCategoryChart = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Information Request', 'Assistance Delay', 'Beneficiary Update', 'Sensitive / Escalated'],
+                    datasets: [{
+                        data: mealData.ALL.cat,
+                        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        function updateMealDashboard() {
+            const region = document.getElementById('mealRegionFilter').value;
+            const d = mealData[region];
+            document.getElementById('meal-kpi-total').innerText = d.total;
+            document.getElementById('meal-kpi-resolved').innerText = d.resolved;
+            document.getElementById('meal-kpi-time').innerText = d.time;
+            document.getElementById('meal-kpi-sat').innerText = d.sat;
+            mealTrendChart.data.datasets[0].data = d.trend;
+            mealTrendChart.update();
+            mealCategoryChart.data.datasets[0].data = d.cat;
+            mealCategoryChart.update();
+        }
+
+        // --- 2. WASH CHARTS ---
+        let washVolumeChart, washCampChart;
+        const washData = {
+            ALL: { liters: '14.2M L', tankers: '18 Tankers', ben: '68,500', eff: '96.8%', vol: [2100, 2300, 2450, 2400, 2550, 2600], camps: [18500, 16200, 14800, 19000] },
+            ADI: { liters: '8.1M L', tankers: '10 Tankers', ben: '38,200', eff: '97.5%', vol: [1200, 1300, 1400, 1350, 1450, 1500], camps: [18500, 19700, 0, 0] },
+            MAR: { liters: '6.1M L', tankers: '8 Tankers', ben: '30,300', eff: '95.9%', vol: [900, 1000, 1050, 1050, 1100, 1100], camps: [0, 0, 14800, 15500] }
+        };
+
+        function initWashCharts() {
+            washVolumeChart = new Chart(document.getElementById('washVolumeChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                    datasets: [{
+                        label: 'Water Delivered (m³)',
+                        data: washData.ALL.vol,
+                        backgroundColor: '#38bdf8',
+                        borderRadius: 6
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            washCampChart = new Chart(document.getElementById('washCampChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Adıyaman Camp A', 'Adıyaman Camp B', 'Maraş Hub 1', 'Maraş Hub 2'],
+                    datasets: [{
+                        label: 'Beneficiaries Reached',
+                        data: washData.ALL.camps,
+                        backgroundColor: ['#818cf8', '#6366f1', '#34d399', '#10b981'],
+                        borderRadius: 6
+                    }]
+                },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        function updateWashDashboard() {
+            const z = document.getElementById('washZoneFilter').value;
+            const d = washData[z];
+            document.getElementById('wash-kpi-liters').innerText = d.liters;
+            document.getElementById('wash-kpi-tankers').innerText = d.tankers;
+            document.getElementById('wash-kpi-ben').innerText = d.ben;
+            document.getElementById('wash-kpi-eff').innerText = d.eff;
+            washVolumeChart.data.datasets[0].data = d.vol;
+            washVolumeChart.update();
+            washCampChart.data.datasets[0].data = d.camps;
+            washCampChart.update();
+        }
+
+        // --- 3. PYTHON CHARTS ---
+        function initPythonCharts() {
+            new Chart(document.getElementById('pythonScatterChart').getContext('2d'), {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Project Clusters (Cost vs Impact Score)',
+                        data: [{x: 12, y: 75}, {x: 19, y: 82}, {x: 25, y: 88}, {x: 32, y: 91}, {x: 40, y: 95}, {x: 15, y: 78}, {x: 28, y: 89}],
+                        backgroundColor: '#facc15',
+                        pointRadius: 6
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            new Chart(document.getElementById('pythonQualityChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Missing Values', 'Duplicate IDs', 'Date Format Errors', 'Outliers'],
+                    datasets: [
+                        { label: 'Raw Dataset Issues', data: [1420, 890, 650, 452], backgroundColor: '#f43f5e' },
+                        { label: 'After Python Pandas Script', data: [0, 0, 0, 12], backgroundColor: '#10b981' }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        function togglePythonCode() {
+            document.getElementById('pythonCodeBlock').classList.toggle('hidden');
+        }
+
+        // --- 4. EXCEL PIVOT & CHART ---
+        let excelBarChart;
+        const excelData = {
+            '2025': [
+                { sector: 'WASH & Emergency Water', budget: 450000, actual: 432000, rate: '96.0%', status: 'On Track' },
+                { sector: 'MEAL & Accountability', budget: 180000, actual: 171000, rate: '95.0%', status: 'Optimal' },
+                { sector: 'Food Security & Livelihoods', budget: 620000, actual: 595000, rate: '96.0%', status: 'On Track' },
+                { sector: 'Protection & Legal Aid', budget: 290000, actual: 265000, rate: '91.4%', status: 'Under Budget' }
+            ],
+            '2026': [
+                { sector: 'WASH & Emergency Water', budget: 520000, actual: 498000, rate: '95.8%', status: 'On Track' },
+                { sector: 'MEAL & Accountability', budget: 210000, actual: 205000, rate: '97.6%', status: 'Optimal' },
+                { sector: 'Food Security & Livelihoods', budget: 700000, actual: 682000, rate: '97.4%', status: 'On Track' },
+                { sector: 'Protection & Legal Aid', budget: 340000, actual: 319000, rate: '93.8%', status: 'Optimal' }
+            ]
+        };
+
+        function renderExcelTable(year) {
+            const tbody = document.getElementById('excelPivotBody');
+            tbody.innerHTML = '';
+            excelData[year].forEach(row => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-800/50">
+                        <td class="py-3 px-4 font-medium">${row.sector}</td>
+                        <td class="py-3 px-4 text-right font-mono">$${row.budget.toLocaleString()}</td>
+                        <td class="py-3 px-4 text-right font-mono text-emerald-400">$${row.actual.toLocaleString()}</td>
+                        <td class="py-3 px-4 text-right font-bold">${row.rate}</td>
+                        <td class="py-3 px-4 text-center"><span class="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-0.5 rounded">${row.status}</span></td>
+                    </tr>
+                `;
+            });
+        }
+
+        function initExcelChart() {
+            renderExcelTable('2025');
+            excelBarChart = new Chart(document.getElementById('excelBarChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['WASH', 'MEAL', 'Food Sec', 'Protection'],
+                    datasets: [
+                        { label: 'Budget ($)', data: [450000, 180000, 620000, 290000], backgroundColor: '#475569' },
+                        { label: 'Actual ($)', data: [432000, 171000, 595000, 265000], backgroundColor: '#10b981' }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        function updateExcelSlicer(year) {
+            document.getElementById('xl-2025').className = year === '2025' ? 'px-3 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white' : 'px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white';
+            document.getElementById('xl-2026').className = year === '2026' ? 'px-3 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white' : 'px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white';
+            renderExcelTable(year);
+            excelBarChart.data.datasets[0].data = excelData[year].map(r => r.budget);
+            excelBarChart.data.datasets[1].data = excelData[year].map(r => r.actual);
+            excelBarChart.update();
+        }
+
+        // --- TAB SWITCHER FOR LAB ---
+        function switchLabTab(tabName) {
+            document.querySelectorAll('.lab-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById('panel-' + tabName).classList.remove('hidden');
+            document.querySelectorAll('.lab-tab').forEach(b => b.classList.remove('tab-active'));
+            document.getElementById('tab-' + tabName).classList.add('tab-active');
+        }
+
+        // --- POWER BI EMBED SWITCHER ---
+        const pbiReports = [
+            {
+                title: 'Supply Chain & Logistics Performance Dashboard',
+                desc: 'Tracking 53K+ orders, $11.8M sales, on-time delivery rate, and shipping mode risk analysis using advanced DAX.',
+                url: 'https://app.powerbi.com/view?r=eyJrIjoiMWVkNWU5OWEtYTRlNS00OTZiLThhZGUtZmI4YmRlNmY1YTY3IiwidCI6ImEzODAwY2M1LWEwOTMtNGJhMy04MTFlLWVmY2FhOGVhN2Q2MyIsImMiOjZ9'
+            },
+            {
+                title: 'HR Analytics & Employee Attendance Dashboard',
+                desc: 'Comprehensive HR tracking model analyzing employee presence, leave trends, and operational workforce efficiency.',
+                url: 'https://app.powerbi.com/view?r=eyJrIjoiMDRjODRmY2YtN2M0Ni00NTViLWI1YTYtZmM2ODdlNGRhYjU5IiwidCI6ImEzODAwY2M1LWEwOTMtNGJhMy04MTFlLWVmY2FhOGVhN2Q2MyIsImMiOjZ9'
+            },
+            {
+                title: 'IT Expenditure & Infrastructure Budget Dashboard',
+                desc: 'Executive financial monitoring of IT infrastructure expenses, vendor costs, and yearly budget variance.',
+                url: 'https://app.powerbi.com/view?r=eyJrIjoiYzJkMjQyYmEtM2ZkMi00N2I0LThiYzktMjBhM2U4NTY2MDk2IiwidCI6ImEzODAwY2M1LWEwOTMtNGJhMy04MTFlLWVmY2FhOGVhN2Q2MyIsImMiOjZ9'
+            }
+        ];
+
+        function switchPBI(index) {
+            document.getElementById('pbi-title').innerText = pbiReports[index].title;
+            document.getElementById('pbi-desc').innerText = pbiReports[index].desc;
+            document.getElementById('pbi-frame').src = pbiReports[index].url;
+            document.getElementById('pbi-link').href = pbiReports[index].url;
+            document.querySelectorAll('.pbi-btn').forEach((b, i) => {
+                if (i === index) b.classList.add('tab-active');
+                else b.classList.remove('tab-active');
+            });
+        }
+
+        // Initialize all charts on load
+        window.addEventListener('DOMContentLoaded', () => {
+            initMealCharts();
+            initWashCharts();
+            initPythonCharts();
+            initExcelChart();
+        });
+    </script>
 </body>
 </html>
